@@ -1,0 +1,182 @@
+@font-face {
+    font-family: 'Libertinus Sans';
+    src: url('LibertinusSans-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Libertinus Sans';
+    src: url('LibertinusSans-Italic.otf');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Phoenix BIOS';
+    src: url('Ac437_Phoenix_BIOS.ttf');
+}
+
+:root {
+    --text: #122312;
+    --bg: #e0dce2;
+    --alt1: #3a3dd9;
+    --alt2: #5b4761;
+    --afont: 'Libertinus Sans', sans-serif;
+    --bfont: 'Phoenix BIOS', monospace;
+}
+
+body {
+    max-width: calc(89.3vw);
+    min-height: 100vh;
+    margin: auto;
+    padding: 0;
+
+    font-size: 9pt;
+    font-family: var(--afont);
+    line-height: 1.66;
+    letter-spacing: 0.25ex;
+    
+    color: var(--text);
+    background-color: var(--bg);
+
+    * {
+        box-sizing: border-box;
+        margin: 0 0;
+        padding: 0 0;
+    }
+}
+
+header {
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: end;
+
+    background-image: url(header.png);
+    background-repeat: no-repeat;   
+    background-size: 55vw;
+    background-position-y: 1.5rem;
+    image-rendering: pixelated;
+}
+
+header, footer {
+    padding-bottom: 6em;
+
+    > * {
+        padding-left: 50%;
+        min-height: 1.66em;
+    }
+}
+
+main {
+    padding-left: 14.25%;
+}
+
+main {
+    width: 100%;
+    padding-right: 9vw;
+    display: flex;
+    flex-flow: row wrap;
+
+    > * {
+        margin: 0 0 3em 0;
+        min-width: calc(94.5% / 2);
+    }
+
+    > figure {
+        display: grid;
+        grid-template-columns: repeat(6, auto);
+        width: 100%;
+
+        > div {
+            align-content: baseline;
+            padding: 0 3ch 2.25em 0;
+        }
+    }
+    
+    h2, h3 {
+        padding: 0 0 1ex 0;
+    }
+}
+
+ul > li { list-style: none; }
+
+/* typography & style */
+
+a {
+    color: var(--alt1);
+}
+
+h1, h2, h3 {
+    font-size: 13px;
+    font-family: var(--bfont);
+    letter-spacing: 0.25ch;
+    color: var(--alt2);
+}
+
+header h1 {
+    color: var(--alt1);
+    position: fixed;
+    user-select: none;
+}
+
+::selection {
+    color: var(--bg);
+    background-color: var(--alt1);
+}
+
+:active, :visited {
+    color: var(--alt2);
+}
+
+@media screen and (max-width: 1024px) {
+    body {
+        font-size: 11pt;
+        margin: auto;
+        padding: 1.5em 6ch;
+
+        letter-spacing: 0;
+
+        > main {
+            padding: 0;
+            display: block;
+        }
+    }
+
+    header {
+        background-size: 66vw;
+        background-position-x: center;
+        text-align: right;
+        min-width: 50%;
+    }
+
+    main > figure {
+        max-width: calc(100vw - 4ch);
+        display: flex;
+        flex-flow: column nowrap;
+        
+        > div {
+            max-width: 100%;
+            min-height: 0;
+            padding: 0;
+
+            span {
+                border: none;
+
+                :empty {
+                    height: 0;
+                }
+            }
+            
+            span.date::before {
+                content: '✺❃✲☉';
+                margin-right: 1ch;
+                background-color: var(--alt1);
+                color: var(--bg);
+                font-family: monospace;
+            }
+        }
+
+        :nth-child(6n) {
+            padding-bottom: 3rem;
+        }
+    }
+}
