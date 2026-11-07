@@ -17,10 +17,12 @@
 :root {
     --bg: #e0dce2;
     --text: #040605; /* 122312 */
-    --alt1: #0e9fed;
-    --alt3: #0040ff;
+    --alt1: #dda518;
+    --alt2: #516467;
+    --alt3: #2c2d2c;
     --afont: 'Ac437 ToshibaT300 8x16', monospace;
     --bfont: 'Ac437 ToshibaT300 8x16', monospace;
+    --gray1: #646460;
 
     font-size: 14pt;
 }
@@ -38,6 +40,7 @@ body {
     font-family: var(--afont);
     line-height: 1.33em;
     letter-spacing: 0.4ex;
+    text-rendering: optimizeSpeed;
     
     color: var(--bg);
     background-color: var(--text);
@@ -63,7 +66,7 @@ main {
     width: 100%;
     padding-top: 5vh;
     padding-left: min(9vw, 14.25%);
-    padding-right: 9vw;
+    padding-right: 2ch;
     margin-bottom: -3em;
     display: flex;
     flex-flow: row wrap;
@@ -88,11 +91,11 @@ main {
         }
         
         div:nth-child(6n - 3) {
-            color: var(--alt1);
+            color: var(--alt2);
         }
 
         div:nth-child(6n - 5) {
-            color: var(--alt1);
+            color: var(--alt2);
         }
     }
     
@@ -104,6 +107,10 @@ main {
 
         h3 {
             padding: 0 0 1ex 0;
+        }
+
+        &:last-child {
+            padding-bottom: 5vw;
         }
     }
 }
@@ -129,11 +136,11 @@ body {
 h1, h2, h3 {
     font-size: 14pt;
     font-family: var(--bfont);
-    color: var(--alt1);
+    color: var(--alt2);
 }
 
 h2 {
-    border-bottom: 1px solid var(--alt1);
+    border-bottom: 1px solid var(--alt2);
 }
 
 header {
@@ -155,97 +162,111 @@ header {
 }
 
 div.header-bg {
-    font-size: 18pt;
-    color: var(--alt3);
+    color: #242;
     position: absolute;
     overflow: hidden;
     left: 5vw;
     width: 100%;
-    max-height: 96vh;
-    top: -8ch;
+    max-height: 88vh;
     line-height: calc(6pt * 3.6);
     user-select: none;
     text-align: right;
-    animation: headerspace 7s infinite steps(9), headerwidth 14s infinite steps(8), headerpad 12s infinite steps(8), headerfontsize 8s infinite linear;
+    animation: headerspace 4s infinite steps(8),
+        headerwidth 2400ms infinite steps(3),
+        headerpad 4s infinite steps(8),
+        headerfontsize 6s infinite steps(4),
+        headerlift 9s infinite steps(12);
     
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
 
     span {
-        &::before { content: '=' }
+        display: inline;
+        &::before { content: '"'; }
+        animation: headercolors 1.25s infinite steps(1), headerheight 3s infinite;
     }
 
     span:nth-child(2n) {
-        color: rgb(0, 221, 255);
-        &::before { content: '#'; }
+        &::before { content: '='; }
+        animation-delay: 1s;
     }
 
     span:nth-child(3n+3) {
-        color: white;
-        &::before { content: '/'; }
+        animation-duration: 0.23s;
+        &::before { content: 'i'; }
     }
     
     span:nth-child(7n+1) {
-        color: red;
-        &::before { content: '\00a0'; }
+        animation-delay: 4s;
+        &::before { content: '&'; }
+    }
+
+    span:nth-child(6n) {
+        animation-delay: 0.2s;
     }
 
     span:nth-child(9n) {
-        color: yellow;
-        &::before { content: '+'; }
+        &::before { content: '$'; }
     }
     
     span:nth-child(8n + 2) {
-        &::before { content: '-'; }
-    }
-
-    span:nth-child(11n+5) {
-        color: lime;
         &::before { content: '*'; }
     }
 
-    span:nth-child(11n+4) {
-        &::before { content: '?'; }
+    span:nth-child(11n+5) {
+        animation-delay: 0.8s;
+        &::before { content: '+'; }
+    }
+
+    span:nth-child(23n-4) {
+        &::before { content: '%'; }
     }
 
     span:nth-child(11n+9) {
         &::before { content: '!'; }
     }
     
-    span:nth-child(13n+7) {
-        &::before { content: '('; }
+    span:nth-child(12n+1) {
+        &::before { content: '@'; }
     }
 
     span:nth-child(17n-1) {
-        &::before { content: ')'; }
+        &::before { content: 'v'; }
     }
     
-    span:nth-child(11n+9), span:nth-child(15n - 3) {
-        &::before { content: '$'; }
+    span:nth-child(19n+9), span:nth-child(15n - 3) {
+        &::before { content: 'S'; }
     }
 }
 
 @keyframes headerspace {
-    0% { letter-spacing: 0ch; line-height: 2ch; }
-    12% {letter-spacing: 1ch; line-height: 4ch; }
-    33% {letter-spacing: 3ch; line-height: 6ch; }
-    50% {letter-spacing: 8ch; line-height: 16ch; }
-    66% { letter-spacing: 3ch; line-height: 12ch; }
-    88% { letter-spacing: 1ch; line-height: 4ch; }
-    100% { letter-spacing: 0ch; line-height: 2ch; }
+    0% { letter-spacing: 1ch; }
+    12% {letter-spacing: 2ch; }
+    33% {letter-spacing: 4ch; }
+    50% {letter-spacing: 12ch; }
+    66% { letter-spacing: 5ch; }
+    88% { letter-spacing: 3ch; }
+    100% { letter-spacing: 1ch; }
+}
+
+@keyframes headerheight {
+    0% { height:1ch; }
+    25% { height:3ch; }
+    50% { height:5ch; }
+    75% { height:3ch; }
+    100% { height: 1ch; }
 }
 
 @keyframes headerpad {
-    0% { padding-left: 0% }
-    50% { padding-left: 50% }
-    100% { padding-left: 0% }
+    0% { padding-left: 0%; padding-top: 0vh }
+    50% { padding-left: 50%; padding-top: 25vh; }
+    100% { padding-left: 0%; padding-top: 33vh }
 }
 
 @keyframes headerfontsize {
-    0% { font-size: 14pt; }
-    33% { font-size: 11pt; }
-    66% { font-size: 9pt; }
-    100% { font-size: 18pt; }
+    0% { font-size: 16pt; }
+    50% { font-size: 5pt; }
+    100% { font-size: 16pt; }
 }
 
 @keyframes headerwidth {
@@ -264,7 +285,28 @@ div.header-bg {
 
 @keyframes headercolors {
     0% {
+        color: rgb(35, 125, 157);
+    }
+    25% {
+        color: rgb(233, 179, 78);
+    }
+    50% {
+        color: rgb(158, 57, 60);
+    }
+    75% {
+        color: rgb(25, 175, 90);
+    }
+}
 
+@keyframes headerlift {
+    0% {
+        padding-bottom: 0ch;
+    }
+    50% {
+        padding-bottom: -32ch;
+    }
+    100% {
+        padding-bottom: 0ch;
     }
 }
 
