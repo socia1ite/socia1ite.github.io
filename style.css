@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: 'Libertinus Sans';
-    src: url('LibertinusSans-Italic.otf');
+    src: url('./LibertinusSans-Italic.otf');
     font-style: italic;
 }
 
@@ -61,7 +61,6 @@ header {
 }
 
 main {
-    font-size: 11pt;
     background-color: var(--text);
     width: 100%;
     padding-top: 5vh;
@@ -145,7 +144,6 @@ h2 {
 
 header {
     font-family: var(--bfont);
-    font-size: 1.2rex;
     letter-spacing: 0;
     overflow: hidden;
     
@@ -168,9 +166,10 @@ div.header-bg {
     left: 5vw;
     width: 100%;
     max-height: 88vh;
+    overflow: hidden;
     line-height: calc(6pt * 3.6);
     text-align: right;
-    animation: headerspace 4s infinite steps(8),
+    animation: 
         headerwidth 4800ms infinite steps(3),
         headerpad 4s infinite steps(16),
         headerfontsize 6s infinite steps(4),
@@ -182,11 +181,11 @@ div.header-bg {
     span {
         display: inline;
         &::before { content: '"'; }
-        animation: headercolors 1.25s infinite steps(1), headerheight 3s infinite;
+        animation: headerspace 4s infinite steps(8), headercolors 1.25s infinite steps(1), headerheight 3s infinite;
 
         &:hover {
-            background-color: var(--alt2);
-            color: white;
+            background-color: var(--bg);
+            color: var(--text);
             font-weight: bold;
         }
     }
@@ -245,13 +244,13 @@ div.header-bg {
 }
 
 @keyframes headerspace {
-    0% { margin: 0 1ch; }
-    12% {margin: 0 2ch; }
-    33% {margin: 0 4ch; }
-    50% {margin: 0 12ch; }
-    66% { margin: 0 5ch; }
-    88% { margin: 0 3ch; }
-    100% { margin: 0 1ch; }
+    0% { margin: 0 0ch; }
+    12% {margin: 0 0.17ch; }
+    33% {margin: 0 0.4ch; }
+    50% {margin: 0 1.2ch; }
+    66% { margin: 0 0.4ch; }
+    88% { margin: 0 0.17ch; }
+    100% { margin: 0 0ch; }
 }
 
 @keyframes headerheight {
@@ -264,8 +263,8 @@ div.header-bg {
 
 @keyframes headerpad {
     0% { padding-left: 0%; padding-top: 12vh }
-    66% { padding-left: 50%; padding-top: 60vh; }
-    66% { padding-left: 50%; padding-top: 54vh }
+    33% { padding-left: 45%; padding-top: 60vh; }
+    66% { padding-left: 33%; padding-top: 54vh }
     100% { padding-left: 0%; padding-top: 12vh }
 }
 
@@ -279,10 +278,10 @@ div.header-bg {
     0% {max-width: 33vw}
     10% {max-width: 46vw}
     20% {max-width: 64vw}
-    30% {max-width: 77vw}
-    40% {max-width: 84vw}
-    50% {max-width: 90vw}
-    60% {max-width: 88vw}
+    30% {max-width: 72vw}
+    40% {max-width: 79vw}
+    50% {max-width: 81vw}
+    60% {max-width: 77%}
     70% {max-width: 74vw}
     80% {max-width: 50vw}
     90% {max-width: 42vw}
