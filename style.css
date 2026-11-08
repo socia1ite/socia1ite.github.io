@@ -6,11 +6,18 @@
 :root {
     --txt: #e0dce2;
     --bg: #040605; /* 122312 */
-    --alt1: #516467;
-    --alt2: blue;
+    --dark: #516467;
     --font: 'Ac437 ToshibaT300 8x16 BIOS', monospace;
 
+    
+    --bl: #234a9d;
+    --yl: #e9b34e;
+    --rd: #c84454;
+    --gr: #58c40a;
+
     font-size: 14pt;
+
+    background-color: var(--bg);
 }
 
 * {
@@ -27,7 +34,6 @@ body {
     line-height: 1.33em;
     
     color: var(--txt);
-    background-color: var(--bg);
 }
 
 header, footer {
@@ -38,7 +44,7 @@ header, footer {
 
 header {
     height: 100vh;
-    padding-bottom: 5vh;
+    padding-bottom: 2.5vh;
 
     display: flex;
     flex-flow: column nowrap;
@@ -74,11 +80,11 @@ main {
         }
         
         div:nth-child(6n - 3) {
-            color: var(--alt1);
+            color: var(--dark);
         }
 
         div:nth-child(6n - 5) {
-            color: var(--alt1);
+            color: var(--dark);
         }
     }
     
@@ -104,10 +110,14 @@ main {
 /* typography & style */
 
 a {
-    background-color: var(--alt2);
+    background-color: var(--bl);
     color: var(--txt);
-    text-decoration: none;
     letter-spacing: -0.042ex;
+}
+
+a:active, a:visited {
+    background-color: var(--bg);
+    color: var(--bl);
 }
 
 header, h1, h2, h3 {
@@ -116,20 +126,21 @@ header, h1, h2, h3 {
 
 h1, h2, h3 {
     font-size: 1em;
-    color: var(--alt1);
+    color: var(--dark);
 }
 
 h2 {
-    border-bottom: 1px solid var(--alt1);
+    border-bottom: 1px solid var(--dark);
 }
 
 header {
+    user-select: none;
+
     h1 {
         color: var(--txt);
         max-width: min-content;
-        margin-bottom: 1.5em;
+        margin-bottom: 2.5vh;
         position: fixed;
-        user-select: none;
     }
 
     > * {
@@ -138,14 +149,13 @@ header {
 }
 
 div.header-bg {
-    color: var(--alt1);
+    color: var(--dark);
     position: absolute;
     left: 5vw;
     width: 95vw;
     max-height: 87.5vh;
     overflow: hidden;
     line-height: calc(6pt * 3.6);
-    text-align: right;
     animation: 
         headerwidth 4800ms infinite steps(3),
         headerpad 4s infinite steps(16),
@@ -172,12 +182,12 @@ div.header-bg {
         animation-delay: 1s;
     }
 
-    span:nth-child(3n+3) {
+    span:nth-child(3n+2) {
         animation-duration: 0.23s;
         &::before { content: 'i'; }
     }
     
-    span:nth-child(7n+1) {
+    span:nth-child(7n-1) {
         animation-delay: 4s;
         &::before { content: '&'; }
     }
@@ -186,11 +196,12 @@ div.header-bg {
         animation-delay: 0.2s;
     }
 
-    span:nth-child(9n) {
+    span:nth-child(9n+2) {
         &::before { content: '$'; }
     }
     
     span:nth-child(8n + 2) {
+        animation-duration: 0.8s;
         &::before { content: '*'; }
     }
 
@@ -207,7 +218,7 @@ div.header-bg {
         &::before { content: '!'; }
     }
     
-    span:nth-child(12n+1) {
+    span:nth-child(12n-9) {
         &::before { content: '@'; }
     }
 
@@ -217,6 +228,10 @@ div.header-bg {
     
     span:nth-child(19n+9), span:nth-child(15n - 3) {
         &::before { content: 'S'; }
+    }
+    
+    span:first-child {
+        &::before { content: '*' }
     }
 }
 
@@ -266,57 +281,37 @@ div.header-bg {
 }
 
 @keyframes headercolors {
-    0% {
-        color: rgb(35, 125, 157);
-    }
-    25% {
-        color: rgb(233, 179, 78);
-    }
-    50% {
-        color: rgb(158, 57, 60);
-    }
-    75% {
-        color: rgb(25, 175, 90);
-    }
+    0% { color: var(--bl); }
+    25% { color: var(--yl); }
+    50% { color: var(--rd); }
+    75% { color: var(--gr); }
 }
 
 @keyframes headerlift {
-    0% {
-        padding-bottom: 0ch;
-    }
-    50% {
-        padding-bottom: -32ch;
-    }
-    100% {
-        padding-bottom: 0ch;
-    }
+    0% { padding-bottom: 0ch; }
+    50% { padding-bottom: -32ch; }
+    100% { padding-bottom: 0ch; }
 }
 
 ul > li { list-style: none; }
 
 ::selection {
-    color: var(--alt1);
+    color: var(--alt2);
     background-color: var(--txt);
-}
-
-a:active, a:visited {
-    background-color: var(--bg);
-    color: var(--alt1);
-    text-decoration: underline;
 }
 
 /* for phone */
 
 @media screen and (max-width: 1024px) {
     :root {
-        font-size: 18pt;
+        font-size: 9mm;
     }
 
     body {
         padding: 0 2.5vw;
     }
 
-    header {
+    header, main, footer {
         padding-bottom: 9.75vh;
     }
 
@@ -326,7 +321,6 @@ a:active, a:visited {
         }
         
         > figure {
-            max-width: calc(95vw);
             display: flex;
             flex-flow: column nowrap;
             gap: 0;
