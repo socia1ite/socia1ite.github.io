@@ -1,17 +1,6 @@
 @font-face {
-    font-family: 'Libertinus Sans';
-    src: url('LibertinusSans-Regular.otf');
-}
-
-@font-face {
-    font-family: 'Libertinus Sans';
-    src: url('./LibertinusSans-Italic.otf');
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Phoenix BIOS';
-    src: url('Ac437_Phoenix_BIOS.ttf');
+    font-family: 'Ac437 ToshibaT300 8x16 BIOS';
+    src: url('Ac437_ToshibaT300_8x16.ttf');
 }
 
 :root {
@@ -21,8 +10,6 @@
     --alt2: #516467;
     --alt3: #2c2d2c;
     --afont: 'Ac437 ToshibaT300 8x16', monospace;
-    --bfont: 'Ac437 ToshibaT300 8x16', monospace;
-    --gray1: #646460;
 
     font-size: 14pt;
 }
@@ -134,7 +121,7 @@ body {
 
 h1, h2, h3 {
     font-size: 14pt;
-    font-family: var(--bfont);
+    font-family: var(--afont);
     color: var(--alt2);
 }
 
@@ -143,7 +130,7 @@ h2 {
 }
 
 header {
-    font-family: var(--bfont);
+    font-family: var(--afont);
     letter-spacing: 0;
     overflow: hidden;
     
