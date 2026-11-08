@@ -330,7 +330,7 @@ ul > li { list-style: none; }
 
 @media screen and (max-width: 1024px) {
     :root {
-        font-size: 13pt;
+        font-size: 18pt;
     }
 
     body {
