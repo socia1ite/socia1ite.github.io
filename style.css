@@ -1,15 +1,14 @@
 @font-face {
     font-family: 'Ac437 ToshibaT300 8x16 BIOS';
-    src: url('Ac437_ToshibaT300_8x16.ttf');
+    src: url('./Ac437_ToshibaT300_8x16.ttf');
 }
 
 :root {
-    --bg: #e0dce2;
-    --text: #040605; /* 122312 */
-    --alt1: #dda518;
-    --alt2: #516467;
-    --alt3: #2c2d2c;
-    --afont: 'Ac437 ToshibaT300 8x16', monospace;
+    --txt: #e0dce2;
+    --bg: #040605; /* 122312 */
+    --alt1: #516467;
+    --alt2: blue;
+    --font: 'Ac437 ToshibaT300 8x16 BIOS', monospace;
 
     font-size: 14pt;
 }
@@ -18,19 +17,17 @@
     box-sizing: border-box;
     margin: 0 0;
     padding: 0 0;
+
+    font-family: var(--font);
+    text-rendering: optimizeSpeed;
 }
 
 body {
-    min-height: 100vh;
-
     margin: auto;
-    font-family: var(--afont);
     line-height: 1.33em;
-    letter-spacing: 0.4ex;
-    text-rendering: optimizeSpeed;
     
-    color: var(--bg);
-    background-color: var(--text);
+    color: var(--txt);
+    background-color: var(--bg);
 }
 
 header, footer {
@@ -41,27 +38,27 @@ header, footer {
 
 header {
     height: 100vh;
-    padding-bottom: 3%;;
+    padding-bottom: 5vh;
+
     display: flex;
     flex-flow: column nowrap;
     justify-content: end;
 }
 
 main {
-    background-color: var(--text);
     width: 100%;
     padding-top: 5vh;
     padding-left: min(9vw, 14.25%);
     padding-right: 2ch;
     margin-bottom: -3em;
+
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    gap: 8rem 2rem;
+    gap: 8em 2em;
 
     > * {
-        margin: 0 0 3em 0;
-        width: calc(94.5% / 2);
+        margin-bottom: 3em;
     }
 
     > figure {
@@ -72,27 +69,30 @@ main {
 
         > div {
             align-content: baseline;
+            min-width: 14ch;
             max-width: 8vw;
-            min-width: 14ch
         }
         
         div:nth-child(6n - 3) {
-            color: var(--alt2);
+            color: var(--alt1);
         }
 
         div:nth-child(6n - 5) {
-            color: var(--alt2);
+            color: var(--alt1);
         }
     }
     
     section {
+        width: max(80ch, 40vw);
+        margin-right: 2.5vw;
+
         h2 {
-            padding-bottom: 0.25ex;
-            margin-bottom: 0.25ex;
+            padding-bottom: 0.25ch;
+            margin-bottom: 0.25ch;
         }
 
         h3 {
-            padding: 0 0 1ex 0;
+            padding: 0 0 1ch 0;
         }
 
         &:last-child {
@@ -104,38 +104,28 @@ main {
 /* typography & style */
 
 a {
-    color: var(--alt3);
+    background-color: var(--alt2);
+    color: var(--txt);
+    text-decoration: none;
     letter-spacing: -0.042ex;
 }
 
-h1, h2, h3 {
-    letter-spacing: 0.08ex;
-}
-
-body {
-    background-repeat: no-repeat;   
-    background-size: 396px;
-    background-position: calc(50% - 226px) 12.8vh;
-    image-rendering: pixelated;
+header, h1, h2, h3 {
+    letter-spacing: 0.125ex;
 }
 
 h1, h2, h3 {
-    font-size: 14pt;
-    font-family: var(--afont);
-    color: var(--alt2);
+    font-size: 1em;
+    color: var(--alt1);
 }
 
 h2 {
-    border-bottom: 1px solid var(--alt2);
+    border-bottom: 1px solid var(--alt1);
 }
 
 header {
-    font-family: var(--afont);
-    letter-spacing: 0;
-    overflow: hidden;
-    
     h1 {
-        color: var(--bg);
+        color: var(--txt);
         max-width: min-content;
         margin-bottom: 1.5em;
         position: fixed;
@@ -148,11 +138,11 @@ header {
 }
 
 div.header-bg {
-    color: #242;
+    color: var(--alt1);
     position: absolute;
     left: 5vw;
-    width: 100%;
-    max-height: 88vh;
+    width: 95vw;
+    max-height: 87.5vh;
     overflow: hidden;
     line-height: calc(6pt * 3.6);
     text-align: right;
@@ -171,8 +161,8 @@ div.header-bg {
         animation: headerspace 4s infinite steps(8), headercolors 1.25s infinite steps(1), headerheight 3s infinite;
 
         &:hover {
-            background-color: var(--bg);
-            color: var(--text);
+            background-color: var(--txt);
+            color: var(--bg);
             font-weight: bold;
         }
     }
@@ -256,9 +246,9 @@ div.header-bg {
 }
 
 @keyframes headerfontsize {
-    0% { font-size: 9pt; }
-    50% { font-size: 21pt; }
-    100% { font-size: 9pt; }
+    0% { font-size: 0.66em; }
+    50% { font-size: 2em; }
+    100% { font-size: 0.66em; }
 }
 
 @keyframes headerwidth {
@@ -305,12 +295,14 @@ div.header-bg {
 ul > li { list-style: none; }
 
 ::selection {
-    color: var(--alt2);
-    background-color: var(--bg);
+    color: var(--alt1);
+    background-color: var(--txt);
 }
 
-:active, :visited {
-    color: var(--bg);
+a:active, a:visited {
+    background-color: var(--bg);
+    color: var(--alt1);
+    text-decoration: underline;
 }
 
 /* for phone */
@@ -321,30 +313,26 @@ ul > li { list-style: none; }
     }
 
     body {
-        margin: auto;
+        padding: 0 2.5vw;
+    }
 
-        background-size: 100vh;
-
-        background-position: 0 50vh;
+    header {
+        padding-bottom: 9.75vh;
     }
 
     main {
-        padding: 0 4ch;
-
         > * {
             width: 100%;
         }
         
         > figure {
-            max-width: calc(100vw - 4ch);
+            max-width: calc(95vw);
             display: flex;
             flex-flow: column nowrap;
             gap: 0;
             
             > div {
                 max-width: 100%;
-                min-height: 0;
-                padding: 0;
 
                 span {
                     border: none;
@@ -356,12 +344,8 @@ ul > li { list-style: none; }
             }
 
             :nth-child(6n) {
-                padding-bottom: 1.5rem;
+                padding-bottom: 1.5em;
             }
         }
-    }
-
-    header > span {
-        font-size: 1rem;
     }
 }
