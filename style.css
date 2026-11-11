@@ -39,7 +39,7 @@ body {
 header, footer {
     max-width: 100vw;
     padding-bottom: 2.5vh;
-    contain: paint;;
+    overflow: hidden;
 
     display: flex;
     flex-flow: column nowrap;
@@ -82,7 +82,7 @@ main {
             max-width: 8vw;
         }
         
-        div:nth-child(6n - 3) {
+        div:nth-child(6n + 2) {
             color: var(--dark);
         }
 
@@ -152,29 +152,31 @@ header {
 }
 
 div.header-bg {
-    position: absolute;
+    position: static;
     max-height: 50vh;
     max-width: 66.67vh;
     overflow: hidden;
     text-align: right;
 
     animation: 
-        headermovex 9s infinite steps(16, end) -4s,
-        headermovey 3.5s infinite steps(12, end) -4s,
-        headerspacey 3.3s infinite steps(6, end) -1s,
-        headerfontsize 6s infinite steps(3, end);
+        headermovex 9s infinite steps(16) -4s,
+        headermovey 3.5s infinite steps(12) -4s,
+        headerspacey 3.3s infinite steps(6) -1s,
+        headerpadding 4s infinite steps(6) -1s,
+        headerfontsize 6s infinite steps(3) -3s;
 
     span {
         display: inline-block;
         height: 1.5em;
 
         animation:
-            headercolors 1.4s infinite steps(4, end);
+            headercolors 1.4s infinite steps(4);
         text-align: center;
 
         &::before {
             content: '....';
-            animation: headerchars 1s infinite steps(8, end);
+            animation: headerchars 1s infinite steps(8),
+            headerspacex 2.8s infinite steps(6) -1s;
         }
     }
 
@@ -183,69 +185,70 @@ div.header-bg {
     }
 
     span:nth-child(3n + 1)::before {
+        font-weight: bold;
         animation: 
-            headerchars 3s infinite steps(8, end) 3s,
-            headercolors 3s infinite steps(8, end) 1s;
+            headerchars 3s infinite steps(8) 3s,
+            headercolors 3s infinite steps(8) 1s;
     }
     
     span:nth-child(5n + 4)::before {
         animation: 
-            headerchars 2.3s infinite steps(8, end) 4s,
-            headercolors 4s infinite steps(4, end) 0;
+            headerchars 2.3s infinite steps(8) 4s,
+            headercolors 4s infinite steps(4) 0;
     }
     
     span:nth-child(7n + 3)::before {
         animation: 
-            headerchars 1.2s infinite steps(8, end) 4s,
-            headercolors 1s infinite steps(4, end) 0.75s;
+            headerchars 1.2s infinite steps(8) 4s,
+            headercolors 1s infinite steps(4) 0.75s;
     }
     
     span:nth-child(11n + 8)::before {
         animation: 
-            headerchars 3.2s infinite steps(8, end) -3s,
-            headercolors 1s infinite steps(4, end) -0.5s;
+            headerchars 3.2s infinite steps(8) -3s,
+            headercolors 1s infinite steps(4) -0.5s;
     }
     span:nth-child(13n + 1)::before {
         animation: 
-            headerchars 3.5s infinite steps(8, end) -0.5s,
-            headercolors 2.75s infinite steps(4, end) 0.5s;
+            headerchars 3.5s infinite steps(8) -0.5s,
+            headercolors 2.75s infinite steps(4) 0.5s;
     }
     
     span:nth-child(17n + 6)::before {
         animation: 
-            headerchars 3s infinite steps(8, end) -1.25s,
-            headercolors 2s infinite steps(4, end) 0;
+            headerchars 3s infinite steps(8) -1.25s,
+            headercolors 2s infinite steps(4) 0;
     }
     
     span:nth-child(19n + 10)::before {
         animation: 
-            headerchars 2.5s infinite steps(8, end) 5s,
-            headercolors 1.25s infinite steps(4, end) 1s;
+            headerchars 2.5s infinite steps(8) 5s,
+            headercolors 1.25s infinite steps(4) 1s;
     }
     
     span:nth-child(11n + 8)::before {
         animation: 
-            headerchars 5s infinite steps(8, end) -3s,
-            headercolors 1s infinite steps(4, end) -1s;
+            headerchars 5s infinite steps(8) -3s,
+            headercolors 1s infinite steps(4) -1s;
     }
 }
 
 @keyframes headermovex {
-    0% { margin-left: 0 }
+    0% { margin-left: -25vw }
     50% { margin-left: 50vw }
-    100% { margin-left: 0 }
+    100% { margin-left: -25vw }
 }
 
 @keyframes headermovey {
-    0% { transform: none; }
+    0% { transform: translate(0, 25vh) }
     50% { transform:translate(0, -50vh) }
-    100% { margin-top: 0 }
+    100% { transform: translate(0, 25vh) }
 }
 
 @keyframes headerspacex {
-    0% { width: 1ch }
-    50% { width: 4ch }
-    100% { width: 1ch }
+    0% { padding: 0 }
+    50% { padding: 0 3ch }
+    100% { padding: 0 }
 }
 
 @keyframes headerspacey {
@@ -277,6 +280,12 @@ div.header-bg {
     74% { content: '**' }
     85% { content: '££' }
     100% { content: '++++'; }
+}
+
+@keyframes headerpadding {
+    0% { padding: 0 }
+    50% { padding: 20ch 10ch }
+    100% { padding: 0 } 
 }
 
 ul > li { list-style: none; }
@@ -338,7 +347,7 @@ ul > li { list-style: none; }
     }
 
     div.header-bg {
-        max-height: 75vh;
-        max-width: 75vw;
+        max-width: 150vw;
+        max-height: 150vw;
     }
 }
