@@ -10,10 +10,10 @@
     --font: 'Ac437 ToshibaT300 8x16 BIOS', monospace;
 
     
-    --bl: #234a9d;
-    --yl: #e9b34e;
-    --rd: #c84454;
-    --gr: #58c40a;
+    --bl: #034bd0;
+    --yl: #d8d840;
+    --rd: #e74951;
+    --gr: #e623d9;
 
     font-size: 14pt;
 
@@ -37,6 +37,14 @@ body {
 }
 
 header, footer {
+    max-width: 100vw;
+    padding-bottom: 2.5vh;
+    contain: paint;;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: end;
+
     > * {
         width: 100%;
     }
@@ -44,11 +52,6 @@ header, footer {
 
 header {
     height: 100vh;
-    padding-bottom: 2.5vh;
-
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: end;
 }
 
 main {
@@ -149,135 +152,112 @@ header {
 }
 
 div.header-bg {
-    color: var(--dark);
     position: absolute;
-    left: 5vw;
-    width: 95vw;
-    max-height: 87.5vh;
+    max-height: 50vh;
+    max-width: 66.67vh;
     overflow: hidden;
-    line-height: calc(6pt * 3.6);
+    text-align: right;
+
     animation: 
-        headerwidth 4800ms infinite steps(3),
-        headerpad 4s infinite steps(16),
-        headerfontsize 6s infinite steps(4),
-        headerlift 9s infinite steps(12);
-    
-    display: flex;
-    flex-flow: column wrap;
+        headermovex 9s infinite steps(16, end) -4s,
+        headermovey 3.5s infinite steps(12, end) -4s,
+        headerspacey 3.3s infinite steps(6, end) -1s,
+        headerfontsize 6s infinite steps(3, end);
 
     span {
-        display: inline;
-        &::before { content: '"'; }
-        animation: headerspace 4s infinite steps(8), headercolors 1.25s infinite steps(1), headerheight 3s infinite;
+        display: inline-block;
+        height: 1.5em;
 
-        &:hover {
-            background-color: var(--txt);
-            color: var(--bg);
-            font-weight: bold;
+        animation:
+            headercolors 1.4s infinite steps(4, end);
+        text-align: center;
+
+        &::before {
+            content: '....';
+            animation: headerchars 1s infinite steps(8, end);
         }
     }
 
-    span:nth-child(2n) {
-        &::before { content: '='; }
-        animation-delay: 1s;
+    span:nth-child(2n)::before {
+        content: '/ ';
     }
 
-    span:nth-child(3n+2) {
-        animation-duration: 0.23s;
-        &::before { content: 'i'; }
+    span:nth-child(3n + 1)::before {
+        animation: 
+            headerchars 3s infinite steps(8, end) 3s,
+            headercolors 3s infinite steps(8, end) 1s;
     }
     
-    span:nth-child(7n-1) {
-        animation-delay: 4s;
-        &::before { content: '&'; }
-    }
-
-    span:nth-child(6n) {
-        animation-delay: 0.2s;
-    }
-
-    span:nth-child(9n+2) {
-        &::before { content: '$'; }
+    span:nth-child(5n + 4)::before {
+        animation: 
+            headerchars 2.3s infinite steps(8, end) 4s,
+            headercolors 4s infinite steps(4, end) 0;
     }
     
-    span:nth-child(8n + 2) {
-        animation-duration: 0.8s;
-        &::before { content: '*'; }
-    }
-
-    span:nth-child(11n+5) {
-        animation-delay: 0.8s;
-        &::before { content: '+'; }
-    }
-
-    span:nth-child(23n-4) {
-        &::before { content: '%'; }
-    }
-
-    span:nth-child(11n+9) {
-        &::before { content: '!'; }
+    span:nth-child(7n + 3)::before {
+        animation: 
+            headerchars 1.2s infinite steps(8, end) 4s,
+            headercolors 1s infinite steps(4, end) 0.75s;
     }
     
-    span:nth-child(12n-9) {
-        &::before { content: '@'; }
+    span:nth-child(11n + 8)::before {
+        animation: 
+            headerchars 3.2s infinite steps(8, end) -3s,
+            headercolors 1s infinite steps(4, end) -0.5s;
     }
-
-    span:nth-child(17n-1) {
-        &::before { content: 'v'; }
+    span:nth-child(13n + 1)::before {
+        animation: 
+            headerchars 3.5s infinite steps(8, end) -0.5s,
+            headercolors 2.75s infinite steps(4, end) 0.5s;
     }
     
-    span:nth-child(19n+9), span:nth-child(15n - 3) {
-        &::before { content: 'S'; }
+    span:nth-child(17n + 6)::before {
+        animation: 
+            headerchars 3s infinite steps(8, end) -1.25s,
+            headercolors 2s infinite steps(4, end) 0;
     }
     
-    span:first-child {
-        &::before { content: '*' }
+    span:nth-child(19n + 10)::before {
+        animation: 
+            headerchars 2.5s infinite steps(8, end) 5s,
+            headercolors 1.25s infinite steps(4, end) 1s;
+    }
+    
+    span:nth-child(11n + 8)::before {
+        animation: 
+            headerchars 5s infinite steps(8, end) -3s,
+            headercolors 1s infinite steps(4, end) -1s;
     }
 }
 
-@keyframes headerspace {
-    0% { margin: 0 0ch; }
-    12% {margin: 0 0.17ch; }
-    33% {margin: 0 0.4ch; }
-    50% {margin: 0 1.2ch; }
-    66% { margin: 0 0.4ch; }
-    88% { margin: 0 0.17ch; }
-    100% { margin: 0 0ch; }
+@keyframes headermovex {
+    0% { margin-left: 0 }
+    50% { margin-left: 50vw }
+    100% { margin-left: 0 }
 }
 
-@keyframes headerheight {
-    0% { height:1ch; }
-    25% { height:3ch; }
-    50% { height:5ch; }
-    75% { height:3ch; }
-    100% { height: 1ch; }
+@keyframes headermovey {
+    0% { transform: none; }
+    50% { transform:translate(0, -50vh) }
+    100% { margin-top: 0 }
 }
 
-@keyframes headerpad {
-    0% { padding-left: 0%; padding-top: 12vh }
-    33% { padding-left: 45%; padding-top: 60vh; }
-    66% { padding-left: 33%; padding-top: 54vh }
-    100% { padding-left: 0%; padding-top: 12vh }
+@keyframes headerspacex {
+    0% { width: 1ch }
+    50% { width: 4ch }
+    100% { width: 1ch }
+}
+
+@keyframes headerspacey {
+    0% { line-height: 0.5em }
+    50% { line-height: 3em }
+    100% { line-height: 0.5em }
 }
 
 @keyframes headerfontsize {
     0% { font-size: 0.66em; }
-    50% { font-size: 2em; }
+    50% { font-size: 1.75em; }
     100% { font-size: 0.66em; }
-}
-
-@keyframes headerwidth {
-    0% {max-width: 33vw}
-    10% {max-width: 46vw}
-    20% {max-width: 64vw}
-    30% {max-width: 72vw}
-    40% {max-width: 79vw}
-    50% {max-width: 81vw}
-    60% {max-width: 77%}
-    70% {max-width: 74vw}
-    80% {max-width: 50vw}
-    90% {max-width: 42vw}
-    100% {max-width: 33vw}
 }
 
 @keyframes headercolors {
@@ -287,10 +267,16 @@ div.header-bg {
     75% { color: var(--gr); }
 }
 
-@keyframes headerlift {
-    0% { padding-bottom: 0ch; }
-    50% { padding-bottom: -32ch; }
-    100% { padding-bottom: 0ch; }
+@keyframes headerchars {
+    0% { content: '::'; }
+    14% { content: '_|' }
+    27% { content: '|^' }
+    39% { content: '??' }
+    48% { content: '||' }
+    61% { content: '><' }
+    74% { content: '**' }
+    85% { content: '££' }
+    100% { content: '++++'; }
 }
 
 ul > li { list-style: none; }
@@ -300,11 +286,15 @@ ul > li { list-style: none; }
     background-color: var(--txt);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .grid span::before { animation: none; }
+}
+
 /* for phone */
 
 @media screen and (max-width: 1024px) {
     :root {
-        font-size: 9mm;
+        font-size: 7.5mm;
     }
 
     body {
@@ -313,6 +303,10 @@ ul > li { list-style: none; }
 
     header, main, footer {
         padding-bottom: 9.75vh;
+    }
+
+    header, footer {
+        span { margin-bottom: -1em; }
     }
 
     main {
@@ -341,5 +335,10 @@ ul > li { list-style: none; }
                 padding-bottom: 1.5em;
             }
         }
+    }
+
+    div.header-bg {
+        max-height: 75vh;
+        max-width: 75vw;
     }
 }
