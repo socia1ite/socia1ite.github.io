@@ -152,7 +152,7 @@ header {
 }
 
 div.header-bg {
-    position: static;
+    position: absolute;
     max-height: 50vh;
     max-width: 66.67vh;
     overflow: hidden;
